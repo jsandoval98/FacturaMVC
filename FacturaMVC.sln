@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturaMVC", "FacturaMVC\Fa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{10FAEF23-0D6B-4B8D-B603-ECFC00FD0E36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturaWebApi", "FacturaWebApi\FacturaWebApi.csproj", "{9B18F39D-D1EB-4687-8CAC-2A7061DAF8DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{10FAEF23-0D6B-4B8D-B603-ECFC00FD0E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10FAEF23-0D6B-4B8D-B603-ECFC00FD0E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10FAEF23-0D6B-4B8D-B603-ECFC00FD0E36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B18F39D-D1EB-4687-8CAC-2A7061DAF8DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B18F39D-D1EB-4687-8CAC-2A7061DAF8DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B18F39D-D1EB-4687-8CAC-2A7061DAF8DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B18F39D-D1EB-4687-8CAC-2A7061DAF8DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
