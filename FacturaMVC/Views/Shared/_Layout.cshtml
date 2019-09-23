@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    @*<link href="~/Content/fontawesome-all.css" rel="stylesheet" />
+        <link href="~/Content/site.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />*@
+
+    @*<script src="~/Scripts/modernizr-2.6.2.js"></script>*@
+</head>
+<body>
+    <div class="container2">
+        <header>
+            <div class="titulo">
+                <h1>Sistema de Gestion de Biblioteca</h1>
+            </div>
+            <ul class="bar-menu">
+                <li><a href="/Prestamo/Index">Prestamos</a></li>
+                <li><a href="/Articulo/Index">Articulos</a></li>
+                <li><a href="/Editorial/Index">Editoriales</a></li>
+                <li><a href="/Autor/Index">Autores</a></li>
+                <li><a href="/Materia/Index">Materias</a></li>
+                <li><a href="/Encuadernacion/Index">Encuadernación</a></li>
+                <li><a href="/TipoPrestamo/Index">Tipo Prestamo</a></li>
+            </ul>
+        </header>
+        <div class="main-body">
+            @RenderBody()
+        </div>
+
+        <footer></footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

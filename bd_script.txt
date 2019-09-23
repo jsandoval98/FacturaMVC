@@ -1,0 +1,85 @@
+
+USE [dbComercial]
+GO
+
+declare @i int=0,
+        @numero int= 2000,
+		@dia int,
+		@mes int,
+		@ano int,
+		@fechaemision datetime,
+		@ClienteId int,
+		@MontoTotal decimal(18,4);
+
+
+
+while(@i < 1000)
+begin
+
+select @dia= floor(rand()*27) + 1;
+select @mes= floor(rand()*11) + 1;
+select @ano= floor(rand()*4) + 2015;
+select @ClienteId= floor(rand()*9) + 1;
+select @MontoTotal= (floor(rand()*1000) + 2000 + (floor(rand()*99) + 1)/100);
+select @fechaemision = DATEFROMPARTS(@ano, @mes, @dia);
+
+
+INSERT INTO [dbo].[Factura]
+           ([Numero]
+           ,[Serie]
+           ,[ConceptoId]
+           ,[FechaEmision]
+           ,[TipoMonedaId]
+           ,[IncluyeIGV]
+           ,[NroSiaf]
+           ,[NroMemo]
+           ,[FechaMemo]
+           ,[FechaCobro]
+           ,[SubTotal]
+           ,[MontoIGV]
+           ,[MontoTotal]
+           ,[IGV]
+           ,[Observacion]
+           ,[ClienteId]
+           ,[ContratoId]
+           ,[FechaRegistro]
+           ,[UsuarioRegistroId]
+           ,[FechaEdicion]
+           ,[UsuarioEdicionId]
+           ,[EstadoId]
+           ,[Habilitado])
+     VALUES
+           (@numero
+           ,120
+           ,1
+           ,@fechaemision
+           ,1
+           ,1
+           ,''
+           ,''
+           ,null
+           ,null
+           ,1000
+           ,180
+           ,@MontoTotal
+           ,18
+           ,''
+           ,@ClienteId
+           ,1
+           ,@fechaemision
+           ,1
+           ,null
+           ,null
+           ,1
+           ,1)
+
+set @i= @i +1;
+set @numero= @numero + 1; 
+
+end;
+
+GO
+
+
+
+
