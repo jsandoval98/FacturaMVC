@@ -18,10 +18,10 @@ namespace FacturaMVC
                 {
                     AuthenticationType = "ApplicationCookie",
                     //LoginPath = new PathString("/Seguridad/Login"),
-                    LoginPath = new PathString("/Inicio/Index"),
+                    LoginPath = new PathString("/Login/Login"),
                     CookieName = "micookie",
                     ExpireTimeSpan = TimeSpan.FromSeconds(600),
-                    LogoutPath = new PathString("/Inicio/Index")
+                    LogoutPath = new PathString("/Login/Login")
 
                 }
                 );

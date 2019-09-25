@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "Nueva Factura";
+}
+
+<h2 class="titulo">Nueva Factura</h2>
+
+<div class="panel-button">
+    <button id="btnBuscar" class="button"><i class="button-icon icon-buscar"></i>Grabar</button>
+    <button id="btnLimpiar" class="button"><i class="button-icon icon-buscar"></i>Limpiar</button>
+</div>
+
+<div id="panelfiltros" class="panel-filtros">
+    <div class="columna">
+        <div><label class="label" for="txtNumero">Nro. Factura: </label><input id="txtNumero" type="text" /></div>
+        @*<div><label class="label" for="ddlCliente">Cliente: </label><select id="ddlCliente"></select></div>*@
+        <div><label class="label" for="autocompleteCliente">Cliente: </label><input type="text" id="autocompleteCliente" /><input type="hidden" id="txtCliente" /></div>
+    </div>
+    <div class="columna">
+        <div><label class="label" style="width:48px; min-width:48px;" for="ddlMes">Mes: </label><select id="ddlMes" style="width:120px"></select> : <select id="ddlAno" style="width:90px"></select></div>
+        <div><label class="label" for="ddlConcepto">Concepto: </label><select id="ddlConcepto"></select></div>
+    </div>
+    <div class="columna">
+        <div><label class="label" for="txtNroOIP">Nro. OIP: </label><input id="txtNroOIP" /></div>
+        <div><label class="label" for="ddlEstado">Estado: </label><select id="ddlEstado"></select></div>
+    </div>
+</div>
+
+<div class="panel-button" style="width:97.2%; margin: 1px auto">
+    <button id="btnAgregar" class="button"><i class="button-icon icon-buscar"></i>Agregar</button>
+    <button id="btnEliminar" class="button"><i class="button-icon icon-buscar"></i>Eliminar</button>
+</div>
+<div id="gridOIPs" style="margin: 1px auto; margin-bottom:8px">
+
+</div>
+
+<div id="panelfiltros" class="panel-filtros">
+    <div class="columna" style="width:auto; margin-right:50px; padding-right:20px">
+        <div><label class="label" for="txtNumero">Observaciones: </label>
+        <textarea rows="10" cols="20" style="width:450px; height:100px" spellcheck="false"></textarea></div>
+    </div>
+
+    <div class="columna">
+        <div><label class="label" for="txtNroOIP">Monto OIP: </label><input id="txtNroOIP" /></div>
+        <div><label class="label" for="ddlEstado">Monto IGV: </label><input id="txtNroOIP" /></div>
+        <div><label class="label" for="ddlEstado">Monto Total: </label><input id="txtNroOIP" /></div>
+
+    </div>
+</div>
+
+
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        var gridOIPs = $.fn.JsGrid("gridOIPs", {
+            //url: "http://localhost:54375/api/factura/ListarPagedFacturas",
+            url: "/factura/ListarPagedFacturas",
+            width: "950px",
+            height: "200px",
+            paging: false,
+            sorting: true,
+            pagingOptions: {
+                server: true,
+                pageSize: 100,
+                pagingMsg: "Mostrando {0} - {1} de {2}",
+            },
+            headerClass: "gridheaderclass",
+            params: [
+                { name: "Numero", value: "$('#txtNumero').val();" },
+                { name: "ConceptoId", value: "$('#ddlConcepto').val();" },
+                { name: "ClienteId", value: "$('#txtCliente').val();" },
+                { name: "EstadoId", value: "$('#ddlEstado').val();" },
+                { name: "Mes", value: "$('#ddlMes').val();" },
+                { name: "Ano", value: "$('#ddlAno').val();" }
+
+            ],
+            columnModel: [
+                { text: "Nro. OIP", dataIndex: "Numero", dataType: "string", sortCommand: "Numero", textAlign: "center", width: "100px" },
+                { text: "Revisión", dataIndex: "Concepto", dataType: "string", sortCommand: "CodigoArticulo", textAlign: "center", typeEditCtrl: "textbox", width: "150px" },
+                { text: "Cliente", dataIndex: "Cliente", dataType: "string", sortCommand: "Cliente", width: "250px" },
+                { text: "Fecha Emisión", dataIndex: "FechaEmision", dataType: "date", sortCommand: "FechaEmision", typeEditCtrl: "textbox", width: "100px" },
+                { text: "Tipo Moneda", dataIndex: "TipoMoneda", dataType: "string", typeEditCtrl: "datepicker", width: "80px" },
+                { text: "Monto Total", dataIndex: "MontoTotal", dataType: "decimal", sortCommand: "MontoTotal", width: "100px" },
+                { text: "Estado", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "120px" },
+            ],
+            selectionColumn: {
+                type: 'checkbox',
+                multiple: true
+            },
+            selectionModel: {
+                type: "cell"
+            }
+        });
+
+
+        //gridOIPs.Reload();
+    </script>
+
+}

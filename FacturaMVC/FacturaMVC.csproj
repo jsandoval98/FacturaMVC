@@ -204,6 +204,7 @@
     <Content Include="images\printer.png" />
     <Content Include="Content\img\refresh-gif.gif" />
     <Content Include="images\table_edit.png" />
+    <Content Include="images\user.png" />
     <Content Include="images\zoom.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -234,12 +235,14 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Inicio\Index.cshtml" />
     <Content Include="Views\Factura\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\CambiarContrasena.cshtml" />
+    <Content Include="Views\Factura\NuevaFactura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

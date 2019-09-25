@@ -1,0 +1,110 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "Index";
+}
+
+<style>
+    body {
+        background-color: #f1f1f1;
+    }
+
+    fieldset {
+        border: 1px solid red;
+        padding: 10px 0px 5px 10px;
+        margin: 10px;
+        margin-top: 20px;
+        border: 1px solid #000;
+        border-radius: 3px;
+    }
+
+    .panel-main {
+        width: 500px;
+        height: 200px;
+        /*margin: 0px auto;*/
+        border: 3px solid #000;
+        top: 20%;
+        left: 30%;
+        position: absolute;
+        background-image: linear-gradient(to top,#dddddd,#d5d5d5);
+    }
+
+    .panel-logo {
+        float: left;
+        border: solid 0px green;
+        margin-right: 10px;
+    }
+
+    .panel-credencial {
+        float: left;
+        width: 250px;
+        height: 120px;
+        vertical-align: middle;
+        /*border: solid 1px #000;*/
+        /*margin-top: 25px;*/
+        /*border-radius: 3px;*/
+    }
+
+    .label {
+        width: 80px;
+        display: inline-block;
+    }
+
+    .input {
+        width: 150px;
+        display: inline-block;
+    }
+
+    .panel-credencial-row {
+        margin-bottom: 4px;
+        border: 0px solid blue;
+    }
+
+    .panel-credencial-row-button {
+        margin-top: 10px;
+        border: 0px solid blue;
+        text-align: center;
+    }
+
+    .panel-credencial-row-olvide {
+        margin-top: 19px;
+        border: 0px solid blue;
+        text-align: right;
+    }
+
+        .panel-credencial-row-olvide a {
+            color: red;
+        }
+</style>
+
+
+
+<div class="panel-main">
+    <div class="panel-logo">
+        <img width="200" height="200" src="~/images/logofactura.png" />
+    </div>
+
+    <form action="~/Login/Login" method="post" autocomplete="off">
+        <fieldset>
+            <legend>Acceso al Sistema:</legend>
+            <div class="panel-credencial">
+                <div class="panel-credencial-row">
+                    <label class="label" for="txtUsuario">Usuario</label>
+                    <input id="txtUsuario" name="Usuario" class="input" type="text" autofocus />
+                </div>
+                <div class="panel-credencial-row">
+                    <label class="label" for="txtPassword">Password</label>
+                    <input id="txtPassword" name="Password" class="input" type="password" autocomplete="off" />
+                </div>
+                <div class="panel-credencial-row-button">
+                    <button type="submit">Ingresar</button>
+                </div>
+                <div class="panel-credencial-row-olvide">
+                    <a href="#">¿Olvidaste tu contraseña?</a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+

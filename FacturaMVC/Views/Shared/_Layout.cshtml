@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Sistema de Facturación</title>
 
 
     @*<script src="~/Scripts/jquery-3.3.1.js"></script>
@@ -25,23 +25,31 @@
     <div class="container2">
         <header>
             <div class="titulo">
-                <h1>Sistema de Gestion de Biblioteca</h1>
+                <div class="bar-titulo-titulo"><h1>Sistema de Facturación</h1></div>                
+                <div class="bar-titulo-icon-user">
+                    <img src="~/images/user.png" width="25" height="25" />
+                    <div style="display:none" class="panel-opciones-user">
+                        <span>Jorge Eduardo Sandoval Alvarez</span>
+                        <ul>                            
+                            <li><a href="/Login/Salir">Cerrar Sesion</a></li>
+                            <li><a href="/Login/CambiarContrasena">Cambiar Contraseña</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <ul class="bar-menu">
-                <li><a href="/Prestamo/Index">Prestamos</a></li>
-                <li><a href="/Articulo/Index">Articulos</a></li>
-                <li><a href="/Editorial/Index">Editoriales</a></li>
-                <li><a href="/Autor/Index">Autores</a></li>
-                <li><a href="/Materia/Index">Materias</a></li>
-                <li><a href="/Encuadernacion/Index">Encuadernación</a></li>
-                <li><a href="/TipoPrestamo/Index">Tipo Prestamo</a></li>
+                <li><a href="/Factura/Index">Facturas</a></li>
+                <li><a href="/Articulo/Index">Mantenimiento</a></li>
+                <li><a href="/Editorial/Index">Reportes</a></li>
             </ul>
         </header>
         <div class="main-body">
             @RenderBody()
         </div>
 
-        <footer></footer>
+        <footer>
+
+        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
@@ -49,6 +57,29 @@
     @*@Scripts.Render("~/bundles/bootstrap")*@
 
     @RenderSection("scripts", required: false)
+
+
+    <script type="text/javascript">
+
+        $("div .bar-titulo-icon-user img").on("click", function (e) {
+
+            $("div .panel-opciones-user").toggle();
+
+            //$("div .panel-opciones-user").prop("tabindex", 1);
+            //$("div .panel-opciones-user").focus();
+
+
+            e.stopPropagation();
+            e.preventDefault();
+        });
+
+        $(document).on("click", function (e) {
+
+            //alert("ss");
+
+            $("div .panel-opciones-user").hide();
+        });
+    </script>
 
 </body>
 </html>

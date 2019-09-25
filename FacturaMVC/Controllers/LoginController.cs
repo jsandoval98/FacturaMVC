@@ -76,7 +76,6 @@ namespace FacturaMVC.Controllers
             }
         }
 
-        [AllowAnonymous]
         public ActionResult Salir()
         {
             Request.GetOwinContext().Authentication.SignOut();
@@ -84,5 +83,9 @@ namespace FacturaMVC.Controllers
             return RedirectToAction("Login");
         }
 
+        public ActionResult CambiarContrasena()
+        {           
+            return View();
+        }
     }
 }

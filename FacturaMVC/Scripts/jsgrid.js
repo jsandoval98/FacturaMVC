@@ -213,14 +213,14 @@ $.fn.focusWithoutScrolling = function () {
         
         function Init() {
 
-            var grid = Ext.GetCmp(idelem);
+            //var grid = Ext.GetCmp(idelem);
 
-            if (grid) {
+            //if (grid) {
 
-                console.log("destruyendo control " + idelem + "!");
-                console.log(grid)
-                grid.Destroy();
-            }
+            //    console.log("destruyendo control " + idelem + "!");
+            //    console.log(grid)
+            //    grid.Destroy();
+            //}
 
             elem = $("#" + idelem);
 

@@ -14,12 +14,16 @@ namespace FacturaMVC.Controllers
     {
         public ActionResult Index()
         {
+            return View();
+        }
 
-            //if (token != null)
-            //    ViewBag.Message = "token=" + token.access_token;
-            //else
-            //    ViewBag.Message = "no hay token aun";
+        public ActionResult NuevaFactura()
+        {
+            return View();
+        }
 
+        public ActionResult EditarFactura()
+        {
             return View();
         }
 
