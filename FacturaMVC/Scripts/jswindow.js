@@ -6,7 +6,8 @@
             width: "400px",
             height: "400px",
             modal: false,
-            showLoadMask: true
+            showLoadMask: true,
+            hasFooter: false
         }, options);
 
         var elem;
@@ -40,18 +41,6 @@
                     .append($("<span>").addClass("js-window-btn").addClass("js-window-btn-collapse-up"))
             );
 
-            footer = $("<div>")
-                .addClass("js-window-footer")
-                .css({
-                    "position": "absolute",
-                    "bottom": "0px"})
-                .append($("<div>")
-                    .addClass("js-window-footer-btn-box")
-                    .append($("<button>").addClass("js-window-btn-cancel").text("Cancelar"))
-                    .append($("<button>").addClass("js-window-btn-accept").text("Aceptar"))
-                );
-
-
             content = $("<div>")
                 .addClass("js-window-content")
 
@@ -65,8 +54,25 @@
                     "position": "absolute"
                 })
                 .append(header)
-                .append(content)
-                .append(footer);
+                .append(content);
+
+
+            if (settings.hasFooter) {
+
+                footer = $("<div>")
+                    .addClass("js-window-footer")
+                    .css({
+                        "position": "absolute",
+                        "bottom": "0px"
+                    })
+                    .append($("<div>")
+                        .addClass("js-window-footer-btn-box")
+                        .append($("<button>").addClass("js-window-btn-cancel").text("Cancelar"))
+                        .append($("<button>").addClass("js-window-btn-accept").text("Aceptar"))
+                    );
+
+                elem.append(footer);
+            }
 
             if (settings.cssClass)
                 elem.addClass(settings.cssClass);
@@ -119,7 +125,9 @@
 
                 CollapseUp();
                 e.stopPropagation();
-            });                      
+            });    
+
+            LoadWindow();
         }
 
         function LoadWindow() {
@@ -152,8 +160,6 @@
         }
 
         function Show() {
-
-            LoadWindow();
 
             if (modal) {
                 elem.css("display", "block");
@@ -189,7 +195,9 @@
 
             elem.find(" span.js-window-btn-collapse-up").removeClass("js-window-btn-collapse-up").addClass("js-window-btn-collapse-down");
             elem.css("height", headerHeight + "px");
-            footer.css("display", "none");
+
+            if (settings.hasFooter)
+                footer.css("display", "none");
 
             elem.find(" span.js-window-btn-collapse-down").bind("click", function (e) {
 
@@ -204,7 +212,9 @@
 
             elem.find(" span.js-window-btn-collapse-down").removeClass("js-window-btn-collapse-down").addClass("js-window-btn-collapse-up");
             elem.css("height", settings.height);
-            footer.css("display", "block");
+
+            if (settings.hasFooter)
+                footer.css("display", "block");
 
             elem.find(" span.js-window-btn-collapse-up").bind("click", function (e) {
                 CollapseUp();

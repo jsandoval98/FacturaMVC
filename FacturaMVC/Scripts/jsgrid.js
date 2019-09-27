@@ -35,6 +35,8 @@
 }(jQuery));
 
 
+
+
 (function ($) {
 
     $.fn.loadMask = function (idelem, options) {
@@ -2059,7 +2061,8 @@ $.fn.focusWithoutScrolling = function () {
 
                 var ele = '<td>' + text + '</td>';
 
-                ele = settings.cellCreated(r, c++, text, ele);
+                if (settings.cellCreated)
+                    ele = settings.cellCreated(r, c++, text, ele);
 
                 tr += ele;
             });

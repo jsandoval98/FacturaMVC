@@ -27,6 +27,11 @@ namespace FacturaMVC.Controllers
             return View();
         }
 
+        public ActionResult BusquedaOIPs()
+        {
+            return View();
+        }
+
         //[AllowAnonymous]
         public async Task<JsonResult> ListarPagedFacturas(FacturaRequest filtro)
         {

@@ -20,6 +20,72 @@
     @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />*@
 
     @*<script src="~/Scripts/modernizr-2.6.2.js"></script>*@
+
+    <style>
+
+
+        .bar-menu {
+            display: block;
+            list-style-type: none;
+            float: left;
+            width: 100%;
+            margin: 0px 0px;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .bar-menu li {
+            float: left;
+        }
+
+        .bar-menu li a, .dropbtn {
+            display: inline-block;
+            min-width: 100px;
+            padding: 3px 5px;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 200;
+        }
+
+        .bar-menu li a.activo {
+            background-color: red;
+        }
+
+        .bar-menu li a:hover {
+            background-color: red;
+        }
+
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        ul.bar-menu .dropdown-content a {
+            color: black;
+            padding: 5px 10px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+    </style>
 </head>
 <body>
     <div class="container2">
@@ -38,9 +104,20 @@
                 </div>
             </div>
             <ul class="bar-menu">
-                <li><a href="/Factura/Index">Facturas</a></li>
-                <li><a href="/Articulo/Index">Mantenimiento</a></li>
-                <li><a href="/Editorial/Index">Reportes</a></li>
+                <li><a href="/Factura/Index" class="activo">Facturas</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Mantenimiento</a>
+                    <div class="dropdown-content">
+                        <a href="#">Mantenimiento de Conceptos</a>
+                        <a href="#">Mantenimiento de Usuarios</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Reportes</a>
+                    <div class="dropdown-content">
+                        <a href="/Reporte/ReporteConciliacion">Reporte de Conciliación</a>
+                    </div>
+                </li>
             </ul>
         </header>
         <div class="main-body">

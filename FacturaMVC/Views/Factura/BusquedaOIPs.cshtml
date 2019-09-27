@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "Nueva Factura";
+}
+
+<div class="panel-button">
+    <button id="btnBuscar" class="button"><i class="button-icon icon-buscar"></i>Buscar</button>
+    <button id="btnAgregar" class="button"><i class="button-icon icon-agregar"></i>Agregar</button>
+    <button id="btnCancelarBusq" class="button"><i class="button-icon icon-cancelar"></i>Cancelar</button>
+</div>
+
+<div id="panelfiltros" class="panel-filtros">
+    <div class="columna" style="width: 31%">
+        <div><label class="label" style="width: 70px" for="txtNroFactura">Nro. OIP: </label><input id="txtNroOIP" style="width:120px" type="text" /></div>
+    </div>
+    <div class="columna">
+        <div><label class="label" style="width: 110px" for="txtNroFactura">Nro. Contrato: </label><input id="txtNroFactura" style="width:120px" type="text" /></div>
+    </div>
+    <div class="columna">
+        <div><label class="label" for="autocompleteCliente">Cliente: </label><input type="text" id="autocompleteCliente" style="width:120px" /><input type="hidden" id="txtCliente" /></div>
+    </div>
+
+</div>
+
+<div id="gridBusquedaOIPs" style="margin: 1px auto; margin-bottom:8px">
+
+
+</div>
+
+
+<script type="text/javascript">
+
+    $("#btnCancelarBusq").on("click", function () {
+
+        var BusquedaOIPs = Ext.GetCmp("BusquedaOIPs");
+        BusquedaOIPs.Hide();
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    var gridBusquedaOIPs = $.fn.JsGrid("gridBusquedaOIPs", {
+        url: "/factura/ListarPagedFacturas",
+        width: "850px",
+        height: "410px",
+        paging: true,
+        sorting: true,
+        pagingOptions: {
+            server: true,
+            pageSize: 100,
+            pagingMsg: "Mostrando {0} - {1} de {2}",
+        },
+        headerClass: "gridheaderclass",
+        params: [
+            { name: "Numero", value: "$('#txtNumero').val();" },
+            { name: "ConceptoId", value: "$('#ddlConcepto').val();" },
+            { name: "ClienteId", value: "$('#txtCliente').val();" },
+            { name: "EstadoId", value: "$('#ddlEstado').val();" },
+            { name: "Mes", value: "$('#ddlMes').val();" },
+            { name: "Ano", value: "$('#ddlAno').val();" }
+
+        ],
+        columnModel: [
+            { text: "Nro. OIP", dataIndex: "Numero", dataType: "string", sortCommand: "Numero", textAlign: "center", width: "100px" },
+            { text: "Revisión", dataIndex: "Concepto", dataType: "string", sortCommand: "CodigoArticulo", textAlign: "center", typeEditCtrl: "textbox", width: "150px" },
+            { text: "Cliente", dataIndex: "Cliente", dataType: "string", sortCommand: "Cliente", width: "250px" },
+            { text: "Fecha Emisión", dataIndex: "FechaEmision", dataType: "date", sortCommand: "FechaEmision", typeEditCtrl: "textbox", width: "100px" },
+            { text: "Tipo Moneda", dataIndex: "TipoMoneda", dataType: "string", typeEditCtrl: "datepicker", width: "80px" },
+            { text: "Monto Total", dataIndex: "MontoTotal", dataType: "decimal", sortCommand: "MontoTotal", width: "100px" },
+            { text: "Estado", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "120px" },
+        ],
+        selectionColumn: {
+            type: 'checkbox',
+            multiple: true
+        },
+        selectionModel: {
+            type: "cell"
+        }
+    });
+    Ext.RegisterCmp("gridBusquedaOIPs", gridBusquedaOIPs);
+
+    gridBusquedaOIPs.Reload();
+</script>
+

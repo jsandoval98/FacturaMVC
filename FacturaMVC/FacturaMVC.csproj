@@ -149,6 +149,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -170,6 +171,10 @@
     <Content Include="Content\images\ui-icons_777777_256x240.png" />
     <Content Include="Content\images\ui-icons_cc0000_256x240.png" />
     <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\img\close.png" />
+    <Content Include="Content\img\metro-icon-down.png" />
+    <Content Include="Content\img\metro-icon-up.png" />
+    <Content Include="Content\img\movie.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.theme.css" />
@@ -181,6 +186,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\add.png" />
     <Content Include="Content\img\asc.gif" />
+    <Content Include="images\arrow_undo.png" />
     <Content Include="images\cancel.png" />
     <Content Include="images\close.png" />
     <Content Include="images\delete.png" />
@@ -190,9 +196,6 @@
     <Content Include="images\libro.png" />
     <Content Include="images\logofactura.png" />
     <Content Include="images\logoqs.png" />
-    <Content Include="images\metro-icon-down.png" />
-    <Content Include="images\metro-icon-up.png" />
-    <Content Include="images\movie.png" />
     <Content Include="Content\img\page-first-disabled-gif.gif" />
     <Content Include="Content\img\page-last-gif.gif" />
     <Content Include="Content\img\page-next-gif.gif" />
@@ -240,6 +243,8 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\CambiarContrasena.cshtml" />
     <Content Include="Views\Factura\NuevaFactura.cshtml" />
+    <Content Include="Views\Factura\BusquedaOIPs.cshtml" />
+    <Content Include="Views\Reporte\ReporteConciliacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

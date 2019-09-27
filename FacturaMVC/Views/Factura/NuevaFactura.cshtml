@@ -6,41 +6,43 @@
 <h2 class="titulo">Nueva Factura</h2>
 
 <div class="panel-button">
-    <button id="btnBuscar" class="button"><i class="button-icon icon-buscar"></i>Grabar</button>
-    <button id="btnLimpiar" class="button"><i class="button-icon icon-buscar"></i>Limpiar</button>
+    <button id="btnGrabar" class="button"><i class="button-icon icon-guardar"></i>Grabar</button>
+    <button id="btnCancelar" class="button"><i class="button-icon icon-cancelar"></i>Cancelar</button>
 </div>
 
 <div id="panelfiltros" class="panel-filtros">
     <div class="columna">
-        <div><label class="label" for="txtNumero">Nro. Factura: </label><input id="txtNumero" type="text" /></div>
-        @*<div><label class="label" for="ddlCliente">Cliente: </label><select id="ddlCliente"></select></div>*@
+        <div><label class="label" for="txtNroFactura">Nro. Factura: </label><input id="txtNroFactura" type="text" /></div>
         <div><label class="label" for="autocompleteCliente">Cliente: </label><input type="text" id="autocompleteCliente" /><input type="hidden" id="txtCliente" /></div>
     </div>
     <div class="columna">
-        <div><label class="label" style="width:48px; min-width:48px;" for="ddlMes">Mes: </label><select id="ddlMes" style="width:120px"></select> : <select id="ddlAno" style="width:90px"></select></div>
-        <div><label class="label" for="ddlConcepto">Concepto: </label><select id="ddlConcepto"></select></div>
+        <div><label class="label" style="width:100px" for="txtFechaEmision">Fecha Emisión: </label><input id="txtFechaEmision" type="text"/></div>
+        <div><label class="label" style="width:100px" for="ddlConcepto">Concepto: </label><select id="ddlConcepto"></select></div>
     </div>
     <div class="columna">
-        <div><label class="label" for="txtNroOIP">Nro. OIP: </label><input id="txtNroOIP" /></div>
-        <div><label class="label" for="ddlEstado">Estado: </label><select id="ddlEstado"></select></div>
+        <div><label class="label" for="txtNroOIP">Fecha Memo: </label><input id="txtNroOIP" /></div>
+        <div><label class="label" style="width:100px; margin-right:0px" for="ddlEstado">Incluye IGV?: </label><input type="checkbox" style="width:20px; margin-right:10px"/> IGV: <input id="txtIGV" style="width:50px"/></div>
     </div>
 </div>
 
 <div class="panel-button" style="width:97.2%; margin: 1px auto">
-    <button id="btnAgregar" class="button"><i class="button-icon icon-buscar"></i>Agregar</button>
-    <button id="btnEliminar" class="button"><i class="button-icon icon-buscar"></i>Eliminar</button>
+    <button id="btnAgregar" class="button"><i class="button-icon icon-agregar"></i>Agregar</button>
+    <button id="btnEliminar" class="button"><i class="button-icon icon-eliminar"></i>Eliminar</button>
 </div>
+
 <div id="gridOIPs" style="margin: 1px auto; margin-bottom:8px">
 
+
 </div>
 
-<div id="panelfiltros" class="panel-filtros">
+<div id="panel" class="panel-filtros">
     <div class="columna" style="width:auto; margin-right:50px; padding-right:20px">
         <div><label class="label" for="txtNumero">Observaciones: </label>
         <textarea rows="10" cols="20" style="width:450px; height:100px" spellcheck="false"></textarea></div>
     </div>
 
     <div class="columna">
+        <div><label class="label" for="ddlTipoMoneda">Moneda: </label><select id="ddlTipoMoneda"></select></div>
         <div><label class="label" for="txtNroOIP">Monto OIP: </label><input id="txtNroOIP" /></div>
         <div><label class="label" for="ddlEstado">Monto IGV: </label><input id="txtNroOIP" /></div>
         <div><label class="label" for="ddlEstado">Monto Total: </label><input id="txtNroOIP" /></div>
@@ -52,7 +54,27 @@
 
 @section scripts{
 
+
     <script type="text/javascript">
+
+        var Ext = $.fn.Ext();
+
+        $("#btnCancelar").on("click", function () {
+
+            location.href = "/Factura/Index";
+        });
+
+        $("#btnAgregar").on("click", function () {
+
+            var gridBusquedaOIPs = Ext.GetCmp("gridBusquedaOIPs");
+            gridBusquedaOIPs.Reload();
+
+            BusquedaOIPs.Show();            
+        });
+    </script>
+
+    <script type="text/javascript">
+
 
         var gridOIPs = $.fn.JsGrid("gridOIPs", {
             //url: "http://localhost:54375/api/factura/ListarPagedFacturas",
@@ -94,8 +116,15 @@
             }
         });
 
+        var BusquedaOIPs= $.fn.jsWindow("BusquedaOIPs", {
+            url: "/Factura/BusquedaOIPs",
+            title: "Búsqueda de OIPs",
+            width: "870px",
+            height: "550px",
+            modal: true
+        });
 
-        //gridOIPs.Reload();
+        Ext.RegisterCmp("BusquedaOIPs", BusquedaOIPs);
     </script>
 
 }
