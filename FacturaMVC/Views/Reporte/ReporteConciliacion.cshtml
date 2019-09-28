@@ -1,7 +1,94 @@
 ﻿
 @{
-    ViewBag.Title = "ReporteConciliacion";
+    ViewBag.Title = "Reporte de Conciliación";
 }
 
-<h2>ReporteConciliacion</h2>
+<h2 class="titulo">Reporte de Conciliación</h2>
+
+<div class="panel-button">
+    <button id="btnBuscar" class="button"><i class="button-icon icon-buscar"></i>Buscar</button>
+    <button class="button"><i class="button-icon icon-imprimir"></i>Imprimir Reporte</button>
+</div>
+
+<div id="panelfiltros" class="panel-filtros">
+    <div class="columna" style="width:97%">
+        <label class="label" style="width:48px; min-width:48px;" for="ddlMes">Mes: </label><select id="ddlMes" style="width:140px"></select><label for="ddlAno">Año:</label><select id="ddlAno" style="width:140px"></select>
+    </div>
+</div>
+
+<div id="gridFacturas" style="margin: 1px auto; margin-bottom:8px">
+
+</div>
+
+@section scripts{
+
+<script type="text/javascript">
+
+    var ddlMes = $.fn.jsComboBox("ddlMes", {
+        url: "/factura/ListarMeses",
+        //width: "200px",
+        initialItem: { text: "SELECCIONE", value: "" },
+        selectedValue: "Id",
+        selectedText: "Value",
+        cssClass: "combo"
+    });
+
+    var ddlAno = $.fn.jsComboBox("ddlAno", {
+        url: "/factura/ListarAnhos",
+        //width: "200px",
+        initialItem: { text: "SELECCIONE", value: "" },
+        selectedValue: "Id",
+        selectedText: "Value",
+        cssClass: "combo"
+    });
+
+    var gridFacturas = $.fn.JsGrid("gridFacturas", {
+        //url: "http://localhost:54375/api/factura/ListarPagedFacturas",
+        url: "/factura/ListarPagedFacturas",
+        width: "950px",
+        height: "400px",
+        paging: true,
+        sorting: true,
+        pagingOptions: {
+            server: true,
+            pageSize: 100,
+            pagingMsg: "Mostrando {0} - {1} de {2}",
+        },
+        //rowSelectedClass: "rowselectedclass",
+        //cellSelectedClass: "cellselectedclass",
+        headerClass: "gridheaderclass",
+        //rowClass: "gridrowclass",
+        //alternatingrowClass: "gridalternatingrowclass",
+        params: [
+            { name: "Numero", value: "$('#txtNumero').val();" },
+            { name: "ConceptoId", value: "$('#ddlConcepto').val();" },
+            { name: "ClienteId", value: "$('#txtCliente').val();" },
+            { name: "EstadoId", value: "$('#ddlEstado').val();" },
+            { name: "Mes", value: "$('#ddlMes').val();" },
+            { name: "Ano", value: "$('#ddlAno').val();" }
+
+        ],
+        columnModel: [
+            { text: "Número", dataIndex: "Numero", dataType: "string", sortCommand: "Numero", textAlign: "center", width: "100px" },
+            { text: "Concepto", dataIndex: "Concepto", dataType: "string", sortCommand: "CodigoArticulo", textAlign: "center", typeEditCtrl: "textbox", width: "150px" },
+            { text: "Cliente", dataIndex: "Cliente", dataType: "string", sortCommand: "Cliente", width: "250px" },
+            { text: "Fecha Emisión", dataIndex: "FechaEmision", dataType: "date", sortCommand: "FechaEmision", typeEditCtrl: "textbox", width: "100px" },
+            { text: "Tipo Moneda", dataIndex: "TipoMoneda", dataType: "string", typeEditCtrl: "datepicker", width: "80px" },
+            { text: "Monto Total", dataIndex: "MontoTotal", dataType: "decimal", sortCommand: "MontoTotal", width: "100px" },
+            { text: "Estado", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "120px" },
+            { text: "Fecha Registro", dataIndex: "FechaRegistro", dataType: "date", width: "100px" }
+        ],
+        selectionColumn: {
+            type: 'checkbox',
+            multiple: true
+        },
+        selectionModel: {
+            type: "cell"
+        }       
+    });
+
+    gridFacturas.Reload();
+</script>
+
+}
 

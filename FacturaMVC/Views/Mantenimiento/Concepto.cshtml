@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Mantenimiento de Conceptos";
+}
+
+<h2 class="titulo">Mantenimiento de Conceptos</h2>
+
+<div class="panel-button">
+    <button id="btnBuscar" class="button"><i class="button-icon icon-buscar"></i>Buscar</button>
+    <button id="btnLimpiar" class="button"><i class="button-icon icon-limpiar"></i>Limpiar</button>
+    <button id="btnNuevo" class="button"><i class="button-icon icon-nuevo"></i>Nuevo</button>
+    <button class="button"><i class="button-icon icon-editar"></i>Editar</button>
+    <button class="button"><i class="button-icon icon-eliminar"></i>Eliminar</button>
+</div>
+
+
+<div id="panelfiltros" class="panel-filtros">
+    <div class="columna" style="width:97%">
+        <div><label class="label" for="txtNumero">Nombre: </label><input id="txtNumero" type="text" /></div>
+    </div>
+</div>
+
+<div id="gridConceptos" style="margin: 1px auto; margin-bottom:8px">
+
+</div>
+
+@section scripts{
+
+<script type="text/javascript">
+
+    var gridConceptos = $.fn.JsGrid("gridConceptos", {
+        //url: "http://localhost:54375/api/factura/ListarPagedFacturas",
+        url: "/factura/ListarPagedFacturas",
+        width: "950px",
+        height: "400px",
+        paging: true,
+        sorting: true,
+        pagingOptions: {
+            server: true,
+            pageSize: 100,
+            pagingMsg: "Mostrando {0} - {1} de {2}",
+        },
+        //rowSelectedClass: "rowselectedclass",
+        //cellSelectedClass: "cellselectedclass",
+        headerClass: "gridheaderclass",
+        //rowClass: "gridrowclass",
+        //alternatingrowClass: "gridalternatingrowclass",
+        params: [
+            { name: "Numero", value: "$('#txtNumero').val();" },
+            { name: "ConceptoId", value: "$('#ddlConcepto').val();" },
+            { name: "ClienteId", value: "$('#txtCliente').val();" },
+            { name: "EstadoId", value: "$('#ddlEstado').val();" },
+            { name: "Mes", value: "$('#ddlMes').val();" },
+            { name: "Ano", value: "$('#ddlAno').val();" }
+
+        ],
+        columnModel: [
+            { text: "Número", dataIndex: "Numero", dataType: "string", sortCommand: "Numero", textAlign: "center", width: "20px" },
+            { text: "Nombre", dataIndex: "Concepto", dataType: "string", sortCommand: "CodigoArticulo", textAlign: "center", typeEditCtrl: "textbox", width: "100px" },
+            { text: "Fecha Registro", dataIndex: "FechaRegistro", dataType: "date", width: "100px" }
+        ],
+        selectionColumn: {
+            type: 'none',
+            multiple: true
+        },
+        selectionModel: {
+            type: "cell"
+        }
+    });
+
+    gridConceptos.Reload();
+
+
+</script>
+
+
+}
+

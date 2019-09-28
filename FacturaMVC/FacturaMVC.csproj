@@ -149,6 +149,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MantenimientoController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,6 +194,7 @@
     <Content Include="Content\img\desc.gif" />
     <Content Include="images\disk.png" />
     <Content Include="Content\img\ext.gif" />
+    <Content Include="images\favico.png" />
     <Content Include="images\libro.png" />
     <Content Include="images\logofactura.png" />
     <Content Include="images\logoqs.png" />
@@ -245,6 +247,7 @@
     <Content Include="Views\Factura\NuevaFactura.cshtml" />
     <Content Include="Views\Factura\BusquedaOIPs.cshtml" />
     <Content Include="Views\Reporte\ReporteConciliacion.cshtml" />
+    <Content Include="Views\Mantenimiento\Concepto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
