@@ -13,14 +13,14 @@
 <div id="panelfiltros" class="panel-filtros">
     <div class="columna">
         <div><label class="label" for="txtNroFactura">Nro. Factura: </label><input id="txtNroFactura" type="text" /></div>
-        <div><label class="label" for="autocompleteCliente">Cliente: </label><input type="text" id="autocompleteCliente" /><input type="hidden" id="txtCliente" /></div>
+        <div><label class="label" for="txtCliente">Cliente: </label><input type="text" id="txtCliente" /><input type="hidden" id="txtIdCliente" /></div>
     </div>
     <div class="columna">
-        <div><label class="label" style="width:100px" for="txtFechaEmision">Fecha Emisión: </label><input id="txtFechaEmision" type="text"/></div>
+        <div><label class="label" style="width:100px" for="txtFechaEmision">Fecha Emisión: </label><input id="txtFechaEmision" style="width:160px" type="text"/></div>
         <div><label class="label" style="width:100px" for="ddlConcepto">Concepto: </label><select id="ddlConcepto"></select></div>
     </div>
     <div class="columna">
-        <div><label class="label" for="txtNroOIP">Fecha Memo: </label><input id="txtNroOIP" /></div>
+        <div><label class="label" for="txtFechaMemo">Fecha Memo: </label><input id="txtFechaMemo" style="width:160px" type="text"/></div>
         <div><label class="label" style="width:100px; margin-right:0px" for="ddlEstado">Incluye IGV?: </label><input type="checkbox" style="width:20px; margin-right:10px"/> IGV: <input id="txtIGV" style="width:50px"/></div>
     </div>
 </div>
@@ -43,9 +43,9 @@
 
     <div class="columna">
         <div><label class="label" for="ddlTipoMoneda">Moneda: </label><select id="ddlTipoMoneda"></select></div>
-        <div><label class="label" for="txtNroOIP">Monto OIP: </label><input id="txtNroOIP" /></div>
-        <div><label class="label" for="ddlEstado">Monto IGV: </label><input id="txtNroOIP" /></div>
-        <div><label class="label" for="ddlEstado">Monto Total: </label><input id="txtNroOIP" /></div>
+        <div><label class="label" for="txtNroOIP">Monto OIP: </label><input id="txtNroOIP" style="text-align:right" /></div>
+        <div><label class="label" for="ddlEstado">Monto IGV: </label><input id="txtNroOIP" style="text-align:right" /></div>
+        <div><label class="label" for="ddlEstado">Monto Total: </label><input id="txtNroOIP" style="text-align:right" /></div>
 
     </div>
 </div>
@@ -76,11 +76,83 @@
     <script type="text/javascript">
 
 
+        $('#txtCliente').autocomplete({
+            type: "POST",
+            minLength: 1,
+            source: function (request, response) {
+
+                $.ajax({
+                    url: "http://localhost:54375/api/factura/ListarClientes",
+                    dataType: "json",
+                    data: request,
+                    success: function (data) {
+                        response(data);
+                    },
+                    error: function (a, b, c) {
+                    }
+                });
+            },
+            select: function (event, ui) {
+
+                $('#txtCliente').val(ui.item.label);
+                $('#txtIdCliente').val(ui.item.value);
+
+                event.stopPropagation();
+
+                return false;
+            }
+        });
+
+        $.fn.jsComboBox("ddlConcepto", {
+            url: "/Combo/ListarConceptos",
+            //width: "200px",
+            initialItem: { text: "SELECCIONE", value: "" },
+            selectedValue: "ConceptoId",
+            selectedText: "Nombre",
+            cssClass: "combo",
+            error: function (j, t, e) {
+                if (j.status == 404)
+                    console.log("Url no encontrada!");
+                else {
+                    console.log(j);
+                    console.log(t);
+                    console.log(e);
+                    console.log("Fallo la conexión!");
+                }
+            }
+        });
+
+        $("#txtFechaEmision").datepicker({
+            showOn: "button",
+            buttonImage: "/images/calendar.png",
+            buttonImageOnly: true,
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#txtFechaMemo").datepicker({
+            showOn: "button",
+            buttonImage: "/images/calendar.png",
+            buttonImageOnly: true,
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $.fn.jsComboBox("ddlTipoMoneda", {
+            url: "/Combo/ListarTiposMonedas",
+            //width: "200px",
+            initialItem: { text: "SELECCIONE", value: "" },
+            selectedValue: "Id",
+            selectedText: "Texto",
+            cssClass: "combo",
+            error: function (j) {                
+            }
+        });
+
+
         var gridOIPs = $.fn.JsGrid("gridOIPs", {
             //url: "http://localhost:54375/api/factura/ListarPagedFacturas",
             url: "/factura/ListarPagedFacturas",
             width: "950px",
-            height: "200px",
+            height: "240px",
             paging: false,
             sorting: true,
             pagingOptions: {
@@ -99,13 +171,15 @@
 
             ],
             columnModel: [
-                { text: "Nro. OIP", dataIndex: "Numero", dataType: "string", sortCommand: "Numero", textAlign: "center", width: "100px" },
-                { text: "Revisión", dataIndex: "Concepto", dataType: "string", sortCommand: "CodigoArticulo", textAlign: "center", typeEditCtrl: "textbox", width: "150px" },
-                { text: "Cliente", dataIndex: "Cliente", dataType: "string", sortCommand: "Cliente", width: "250px" },
-                { text: "Fecha Emisión", dataIndex: "FechaEmision", dataType: "date", sortCommand: "FechaEmision", typeEditCtrl: "textbox", width: "100px" },
-                { text: "Tipo Moneda", dataIndex: "TipoMoneda", dataType: "string", typeEditCtrl: "datepicker", width: "80px" },
-                { text: "Monto Total", dataIndex: "MontoTotal", dataType: "decimal", sortCommand: "MontoTotal", width: "100px" },
-                { text: "Estado", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "120px" },
+                { text: "OIP", dataIndex: "Numero", dataType: "string", sortCommand: "Numero", textAlign: "center", width: "50px" },
+                { text: "Revisión", dataIndex: "Concepto", dataType: "string", sortCommand: "CodigoArticulo", textAlign: "center", typeEditCtrl: "textbox", width: "70px" },
+                { text: "Año", dataIndex: "Cliente", dataType: "string", sortCommand: "Cliente", width: "50px" },
+                { text: "Mes", dataIndex: "FechaEmision", dataType: "date", sortCommand: "FechaEmision", typeEditCtrl: "textbox", width: "80px" },
+                { text: "Moneda", dataIndex: "TipoMoneda", dataType: "string", typeEditCtrl: "datepicker", width: "70px" },
+                { text: "Monto Neto", dataIndex: "MontoTotal", dataType: "decimal", sortCommand: "MontoTotal", textAlign:"right",  width: "90px" },
+                { text: "Programa", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "200px" },
+                { text: "Producto", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "200px" },
+                { text: "Motivo", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "200px" }
             ],
             selectionColumn: {
                 type: 'checkbox',

@@ -2,6 +2,7 @@
 using FacturaWebApi.Models.Base;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -9,6 +10,7 @@ using System.Web.Http.Cors;
 namespace FacturaWebApi.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    //[Authorize]
     public class FacturaController : ApiController
     {
         DbComercial context;
@@ -16,6 +18,13 @@ namespace FacturaWebApi.Controllers
         public FacturaController()
         {
             context = new DbComercial();
+
+            //CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+            //CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
+
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("es-PE");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("es-PE");
+
         }
 
         [HttpPost]
@@ -67,7 +76,6 @@ namespace FacturaWebApi.Controllers
 
         }
 
-        [Authorize]
         [HttpPost]
         public IHttpActionResult ListarPagedFacturas(FacturaRequest filtro)
         {
@@ -157,9 +165,25 @@ namespace FacturaWebApi.Controllers
             return Ok(new PagedList<FacturaResponse>(facturas, TotalRows));
         }
 
+        [HttpPost]
+        public IHttpActionResult NuevaFactura(Factura model)
+        {
+            if (context != null)
+            {
+                context.Facturas.Add(model);
+                context.SaveChanges();
+
+                if(model.FacturaId > 0)
+                {
+                    return Ok(model.FacturaId);
+                }
+            }
+
+            return BadRequest();
+        }
+
 
         [HttpGet]
-        [Authorize]
         public List<ConceptoFactura> ListarConceptos()
         {
             var conceptos = new List<ConceptoFactura>();
@@ -179,7 +203,6 @@ namespace FacturaWebApi.Controllers
 
             return estados;
         }
-
 
         [HttpGet]
         [AllowAnonymous]

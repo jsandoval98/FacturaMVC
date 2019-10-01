@@ -1,0 +1,15 @@
+{
+	Numero: 1,
+	Serie: 1,
+	ConceptoId: 1,
+	FechaEmision: '30/09/2019',
+	TipoMonedaId: 1,
+	SubTotal: 10,
+	MontoIGV: 10,
+	MontoTotal: 20,
+	ClienteId:1,
+	ContratoId:1,
+	FechaRegistro: '30/09/2019',
+	UsuarioRegistroId:1,
+	EstadoId:1
+}

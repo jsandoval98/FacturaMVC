@@ -74,43 +74,5 @@ namespace FacturaMVC.Controllers
         //    };
         //}
 
-        [Authorize]
-        public async Task<JsonResult> ListarConceptos()
-        {
-            List<ConceptoFactura> lista = null;
-
-            HttpResponseMessage response = await client.GetAsync("api/factura/ListarConceptos");
-
-            if (response.IsSuccessStatusCode)
-            {
-                lista = await response.Content.ReadAsAsync<List<ConceptoFactura>>();
-            }
-
-            return Json(lista, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult ListarMeses()
-        {
-            List<Mes> lista= Util.ListarMeses();
-
-            return new JsonResult()
-            {
-                Data = lista,
-                MaxJsonLength = Int32.MaxValue,
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
-        }
-
-        public JsonResult ListarAnhos()
-        {
-            List<Anho> lista = Util.ListarAnhos(2015, false);
-
-            return new JsonResult()
-            {
-                Data = lista,
-                MaxJsonLength = Int32.MaxValue,
-                JsonRequestBehavior= JsonRequestBehavior.AllowGet
-            };
-        }
     }
 }

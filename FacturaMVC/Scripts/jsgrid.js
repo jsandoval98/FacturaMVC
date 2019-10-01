@@ -157,6 +157,7 @@ $.fn.focusWithoutScrolling = function () {
                 server: false,
                 pageSize: 20,
                 pagingMsg: "Displaying {0} - {1} of {2}",
+                EmptyMsg: "No record found"
             }, 
             editTrigger: "dblclick",
             rowSelectedClass: "x-selected-row",

@@ -6,7 +6,7 @@
 
 <div class="panel-button">
     <button id="btnBuscar" class="button"><i class="button-icon icon-buscar"></i>Buscar</button>
-    <button id="btnAgregar" class="button"><i class="button-icon icon-agregar"></i>Agregar</button>
+    <button id="btnAceptar" class="button"><i class="button-icon icon-agregar"></i>Aceptar</button>
     <button id="btnCancelarBusq" class="button"><i class="button-icon icon-cancelar"></i>Cancelar</button>
 </div>
 
@@ -63,13 +63,18 @@
 
         ],
         columnModel: [
-            { text: "Nro. OIP", dataIndex: "Numero", dataType: "string", sortCommand: "Numero", textAlign: "center", width: "100px" },
-            { text: "Revisión", dataIndex: "Concepto", dataType: "string", sortCommand: "CodigoArticulo", textAlign: "center", typeEditCtrl: "textbox", width: "150px" },
-            { text: "Cliente", dataIndex: "Cliente", dataType: "string", sortCommand: "Cliente", width: "250px" },
-            { text: "Fecha Emisión", dataIndex: "FechaEmision", dataType: "date", sortCommand: "FechaEmision", typeEditCtrl: "textbox", width: "100px" },
-            { text: "Tipo Moneda", dataIndex: "TipoMoneda", dataType: "string", typeEditCtrl: "datepicker", width: "80px" },
-            { text: "Monto Total", dataIndex: "MontoTotal", dataType: "decimal", sortCommand: "MontoTotal", width: "100px" },
+            { text: "OIP", dataIndex: "Numero", dataType: "string", sortCommand: "Numero", textAlign: "center", width: "100px" },
+            { text: "Cliente", dataIndex: "Concepto", dataType: "string", sortCommand: "CodigoArticulo", textAlign: "center", typeEditCtrl: "textbox", width: "150px" },
+            { text: "Mes", dataIndex: "Cliente", dataType: "string", sortCommand: "Cliente", width: "250px" },
+            { text: "Año", dataIndex: "FechaEmision", dataType: "date", sortCommand: "FechaEmision", typeEditCtrl: "textbox", width: "100px" },
+            { text: "Nro. Contrato", dataIndex: "TipoMoneda", dataType: "string", typeEditCtrl: "datepicker", width: "80px" },
+            { text: "Modalidad Pago", dataIndex: "MontoTotal", dataType: "decimal", sortCommand: "MontoTotal", width: "100px" },
+            { text: "Moneda", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "120px" },
+            { text: "Monto Neto", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "120px" },
             { text: "Estado", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "120px" },
+            { text: "Programa", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "120px" },
+            { text: "Producto", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "120px" },
+            { text: "Motivo", dataIndex: "Estado", dataType: "string", sortCommand: "FechaEntrega", width: "120px" }
         ],
         selectionColumn: {
             type: 'checkbox',

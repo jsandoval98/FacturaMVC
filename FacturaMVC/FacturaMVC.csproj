@@ -145,6 +145,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ComboController.cs" />
     <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
@@ -188,6 +189,7 @@
     <Content Include="images\add.png" />
     <Content Include="Content\img\asc.gif" />
     <Content Include="images\arrow_undo.png" />
+    <Content Include="images\calendar.png" />
     <Content Include="images\cancel.png" />
     <Content Include="images\close.png" />
     <Content Include="images\delete.png" />
@@ -251,6 +253,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Combo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

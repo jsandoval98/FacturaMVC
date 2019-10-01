@@ -27,7 +27,7 @@
     <div class="columna">
         <div><label class="label" for="txtNumero">Nro. Factura: </label><input id="txtNumero" type="text" /></div>
         @*<div><label class="label" for="ddlCliente">Cliente: </label><select id="ddlCliente"></select></div>*@
-        <div><label class="label" for="autocompleteCliente">Cliente: </label><input type="text" id="autocompleteCliente" /><input type="hidden" id="txtCliente" /></div>
+        <div><label class="label" for="txtCliente">Cliente: </label><input type="text" id="txtCliente" /><input type="hidden" id="txtIdCliente" /></div>
     </div>
     <div class="columna">
         <div><label class="label" style="width:48px; min-width:48px;" for="ddlMes">Mes: </label><select id="ddlMes" style="width:120px"></select> : <select id="ddlAno" style="width:90px"></select></div>
@@ -51,7 +51,7 @@
 
 
         function Buscar() {
-            if ($('#autocompleteCliente').val() == "") {
+            if ($('#txtCliente').val() == "") {
                 $('#txtCliente').val("");
             }
 
@@ -81,7 +81,7 @@
             $('#txtNumero').val("");
             $('#ddlConcepto').val("");
             $('#txtCliente').val("");
-            $('#autocompleteCliente').val("");
+            $('#txtIdCliente').val("");
             $('#ddlEstado').val("");
             $('#ddlMes').val("");
             $('#ddlAno').val("");
@@ -109,7 +109,7 @@
 
         var ddlConcepto = $.fn.jsComboBox("ddlConcepto", {
             //url: "http://localhost:54375/api/factura/ListarConceptos",
-            url: "/factura/ListarConceptos",
+            url: "/Combo/ListarConceptos",
             //width: "200px",
             initialItem: { text: "SELECCIONE", value: "" },
             selectedValue: "ConceptoId",
@@ -136,7 +136,7 @@
             cssClass: "combo"
         });
 
-        $('#autocompleteCliente').autocomplete({
+        $('#txtCliente').autocomplete({
             type: "POST",
             minLength: 1,
             source: function (request, response) {
@@ -156,8 +156,8 @@
 
                 console.log(ui.item);
 
-                $('#autocompleteCliente').val(ui.item.label);
-                $('#txtCliente').val(ui.item.value);
+                $('#txtCliente').val(ui.item.label);
+                $('#txtIdCliente').val(ui.item.value);
 
                 event.stopPropagation();
 
@@ -176,7 +176,7 @@
         });
 
         var ddlMes = $.fn.jsComboBox("ddlMes", {
-            url: "/factura/ListarMeses",
+            url: "/Combo/ListarMeses",
             //width: "200px",
             initialItem: { text: "SELECCIONE", value: "" },
             selectedValue: "Id",
@@ -185,7 +185,7 @@
         });
 
         var ddlAno = $.fn.jsComboBox("ddlAno", {
-            url: "/factura/ListarAnhos",
+            url: "/Combo/ListarAnhos",
             //width: "200px",
             initialItem: { text: "SELECCIONE", value: "" },
             selectedValue: "Id",
@@ -213,7 +213,7 @@
             params: [
                 { name: "Numero", value: "$('#txtNumero').val();" },
                 { name: "ConceptoId", value: "$('#ddlConcepto').val();" },
-                { name: "ClienteId", value: "$('#txtCliente').val();" },
+                { name: "ClienteId", value: "$('#txtIdCliente').val();" },
                 { name: "EstadoId", value: "$('#ddlEstado').val();" },
                 { name: "Mes", value: "$('#ddlMes').val();" },
                 { name: "Ano", value: "$('#ddlAno').val();" }

@@ -41,6 +41,16 @@ namespace Utils
 
             return lista;
         }
+
+        public static List<TipoMoneda> ListarTiposMonedas()
+        {
+            List<TipoMoneda> lista = new List<TipoMoneda>();
+
+            lista.Add(new TipoMoneda { Id = 1, Texto = "SOLES", Abreviacion= "S/." });
+            lista.Add(new TipoMoneda { Id = 2, Texto = "DÓLARES", Abreviacion= "US$" });
+            return lista;
+        }
+
     }
 }
 

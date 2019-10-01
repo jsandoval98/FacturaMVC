@@ -18,4 +18,12 @@ namespace Utils
         public int Id { get; set; }
         public string Value { get; set; }
     }
+
+    public class TipoMoneda
+    {
+        public int Id { get; set; }
+        public string Texto { get; set; }
+        public string Abreviacion { get; set; }
+
+    }
 }
