@@ -15,7 +15,7 @@ namespace FacturaMVC.Controllers
 
         public static void Inicializa()
         {
-            ViewBag.Message3 = "Se Ejecuto base! 56676  ";
+            ViewBag.Message3 = "Se Ejecuto base! 56676 888  ";
 
             //if (client == null)
             //{
